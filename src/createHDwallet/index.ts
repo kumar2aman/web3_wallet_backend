@@ -1,0 +1,35 @@
+import { Keypair } from "@solana/web3.js";
+import { generateMnemonic, mnemonicToSeedSync } from "bip39";
+import { derivePath } from "ed25519-hd-key";
+import nacl from "tweetnacl";
+
+
+
+export function main(){
+
+    let result = []
+ 
+    const mnemonic = generateMnemonic(128);
+
+
+const seed = mnemonicToSeedSync(mnemonic)
+
+for(let i=0; i<4; i++){
+    const path = `m/44'/501'/${i}'/0'`;
+
+    const derivedSeedBuffer =  derivePath(path, seed.toString("hex")).key;
+
+   const derivedSeed = new Uint8Array(derivedSeedBuffer)
+
+    const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey
+
+    result.push(Keypair.fromSecretKey(secret).publicKey.toBase58());
+
+  
+}
+
+ return result
+
+
+
+}
