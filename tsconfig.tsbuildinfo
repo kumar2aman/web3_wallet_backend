@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/createHDwallet/index.ts","./src/createKeypair/index.ts"],"version":"5.9.2"}
+{"root":["./src/index.ts","./src/api/v1/createHDwallet.ts","./src/api/v1/createKeypair.ts","./src/api/v1/createMnemonic.ts"],"version":"5.9.2"}
