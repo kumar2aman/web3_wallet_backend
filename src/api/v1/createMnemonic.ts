@@ -1,23 +1,14 @@
+import { Router } from "express";
 
-import { generateMnemonic } from 'bip39';
-import { Router } from 'express';
+import { mnemonic } from "../../controllers";
 
+const router: Router = Router();
 
-const router:Router = Router()
+router.get("/createmnemonic", (req, res) => {
+  const newMnemonic = mnemonic.split(" ");
+  res.json({
+    data: newMnemonic,
+  });
+});
 
-
-
-router.get("/createmnemonic",  (req, res)=>{
-
-const mnemonic =  generateMnemonic(128)
-
-console.log(mnemonic)
-
-res.json({
-    data: mnemonic
-})
-
-})
-
-
-export {router}
+export { router };
