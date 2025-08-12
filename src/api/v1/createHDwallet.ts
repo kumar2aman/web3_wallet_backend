@@ -7,7 +7,7 @@ import { mnemonic } from "../../controllers";
 export function main(): string[] {
   let result = [];
 
-  console.log("from main ts", mnemonic);
+
 
   const seed = mnemonicToSeedSync(mnemonic);
 
