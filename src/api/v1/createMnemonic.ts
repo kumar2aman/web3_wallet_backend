@@ -11,4 +11,4 @@ router.get("/createmnemonic", (req, res) => {
   });
 });
 
-export { router };
+export default router 

@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/api/v1/createHDwallet.ts","./src/api/v1/createKeypair.ts","./src/api/v1/createMnemonic.ts","./src/controllers/index.ts","./src/controllers/createMnemonic/index.ts"],"version":"5.9.2"}
+{"root":["./src/index.ts","./src/api/v1/createHDwallet.ts","./src/api/v1/createKeypair.ts","./src/api/v1/createMnemonic.ts","./src/controllers/index.ts","./src/controllers/createMnemonic/index.ts","./src/routes/index.ts"],"version":"5.9.2"}
