@@ -1,5 +1,8 @@
 import { generateMnemonic } from "bip39";
 
-export function createMnemonic():string {
+ function createMnemonic():string {
   return generateMnemonic(128);
 }
+
+
+export const mnemonic = createMnemonic(); // One consistent mnemonic

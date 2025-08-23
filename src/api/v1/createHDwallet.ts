@@ -2,10 +2,11 @@ import { Keypair } from "@solana/web3.js";
 import { mnemonicToSeedSync } from "bip39";
 import { derivePath } from "ed25519-hd-key";
 import nacl from "tweetnacl";
-import { mnemonic } from "../../controllers";
-import { Router } from "express";
 
-const router:Router = Router();
+import { Router } from "express";
+import { mnemonic } from "../../controllers/createMnemonic";
+
+const router: Router = Router();
 
 router.get("/createhdwallet", (req, res) => {
   function main(): string[] {
@@ -23,18 +24,22 @@ router.get("/createhdwallet", (req, res) => {
       const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey;
 
       result.push(Keypair.fromSecretKey(secret).publicKey.toBase58());
+
+      const base64Key = Buffer.from(secret).toString('base64');
+
+      console.log(base64Key)
     }
 
     return result;
   }
 
-  const key = main();
+   const key = main();
 
-  res.json({
-    data: key,
-  });
+console.log(key);
+
+  // res.json({
+  //   data: key,
+  // });
 });
 
-
-
-export default router
+export default router;

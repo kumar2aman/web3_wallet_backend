@@ -1,6 +1,7 @@
 import { Router } from "express";
+import { mnemonic } from "../../controllers/createMnemonic";
 
-import { mnemonic } from "../../controllers";
+
 
 const router: Router = Router();
 
