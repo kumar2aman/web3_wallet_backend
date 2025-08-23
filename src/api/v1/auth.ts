@@ -1,13 +1,13 @@
 import "dotenv/config";
 import { Router } from "express";
-import { loginSchema, signupSchema } from "../../types/types";
+import { loginSchema, signupSchema } from "../../types/schema";
 import prisma from "../../db";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs"
 
 const authRouter: Router = Router();
 
-authRouter.post("/signup", async (req, res) => {
+authRouter.post("/signup",  async (req, res) => {
   const { success, data } = signupSchema.safeParse(req.body);
 
   if (!success) {
