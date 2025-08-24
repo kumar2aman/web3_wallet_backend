@@ -6,3 +6,5 @@ import { generateMnemonic } from "bip39";
 
 
 export const mnemonic = createMnemonic(); // One consistent mnemonic
+
+console.log("mnemonic is ",mnemonic);

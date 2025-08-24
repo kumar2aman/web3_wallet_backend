@@ -10,6 +10,8 @@ const authRouter: Router = Router();
 authRouter.post("/signup", async (req, res) => {
   const { success, data } = signupSchema.safeParse(req.body);
 
+console.log(data)
+
   if (!success) {
     return res.status(402);
   }
@@ -65,17 +67,40 @@ authRouter.post("/login", async (req, res) => {
       return res.status(401);
     }
 
+    console.log(response);
+
+    
+
+
     const isPasswordValid = await bcrypt.compare(
       data.password,
       response.password
     );
+   
+   
+
     if (!isPasswordValid) {
-      return res.status(401);
+      return  res.status(401).json({
+        message: "wrong password",
+      });
     }
 
     const userId = response.id;
 
+   
+
     const token = jwt.sign({ userId }, process.env.JWT_SECRET as string);
+
+     
+    
+
+    if(!token){
+      return res.json({
+        message: "cannot create token",
+      });
+    }
+    
+
 
     res.status(200).json({
       data: "success",
