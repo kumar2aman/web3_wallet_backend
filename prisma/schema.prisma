@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
- 
 }
 
 datasource db {
@@ -14,9 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id   String  @id  @default(uuid())
-  username String  @unique
+  id       String    @id @default(uuid())
+  username String    @unique
   password String
+  accounts Account[]
+}
+
+model Account {
+  id       String    @id @default(uuid())
+  account  String    @unique
+  userid   String    
+  user     User      @relation(fields: [userid], references: [id])
+  keypairs Keypair[]
+}
+
+model Keypair {
+  publickey  String
+  privatekey String
+  accountid  String  @unique
+  account    Account @relation(fields: [accountid], references: [id])
 }

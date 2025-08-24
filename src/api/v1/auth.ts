@@ -3,11 +3,11 @@ import { Router } from "express";
 import { loginSchema, signupSchema } from "../../types/schema";
 import prisma from "../../db";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 
 const authRouter: Router = Router();
 
-authRouter.post("/signup",  async (req, res) => {
+authRouter.post("/signup", async (req, res) => {
   const { success, data } = signupSchema.safeParse(req.body);
 
   if (!success) {
@@ -18,9 +18,7 @@ authRouter.post("/signup",  async (req, res) => {
     return res.status(401);
   }
 
-
   const hashedPassword = await bcrypt.hash(data.password, 10);
-
 
   try {
     const response = await prisma.user.create({
@@ -67,8 +65,10 @@ authRouter.post("/login", async (req, res) => {
       return res.status(401);
     }
 
-     
-    const isPasswordValid = await bcrypt.compare(data.password, response.password);
+    const isPasswordValid = await bcrypt.compare(
+      data.password,
+      response.password
+    );
     if (!isPasswordValid) {
       return res.status(401);
     }
