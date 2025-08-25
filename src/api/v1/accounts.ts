@@ -21,7 +21,7 @@ try {
 
     const response = await prisma.account.create({
     data: {
-      account: data.account,
+      account: data.account || "A1",
       userid: req.userId,
     },
   });
@@ -32,26 +32,27 @@ try {
 
   const accountId = response.id;
 
-  const keypair = main();
+//   const keypair = main();
 
-  if (!keypair) {
-    return res.status(401);
-  }
+//   if (!keypair) {
+//     return res.status(401);
+//   }
 
-  const keypairResponse = await prisma.keypair.create({
-    data: {
-      publickey: keypair.data.publicKey,
-      privatekey: keypair.data.privateKey,
-      accountid: accountId,
-    },
-  });
+//   const keypairResponse = await prisma.keypair.create({
+//     data: {
+//       publickey: keypair.data.publicKey,
+//       privatekey: keypair.data.privateKey,
+//       accountid: accountId,
+//     },
+//   });
     
 } catch (error) {
     res.json({
         message: "something went wrong", error
     })
-}
+ }
   
+
 });
 
 
